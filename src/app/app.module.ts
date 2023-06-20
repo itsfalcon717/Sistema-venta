@@ -35,7 +35,8 @@ import {uiReducer} from './store/ui/reducer';
 import {ProfabricComponentsModule} from '@profabric/angular-components';
 import {defineCustomElements} from '@profabric/web-components/loader';
 import {SidebarSearchComponent} from './components/sidebar-search/sidebar-search.component';
-
+import { ProductosComponent } from './pages/main-menu/productos/productos.component';
+import { DetailProductComponent } from './pages/main-menu/sub-menu/productos/productos/detail-product/detail-product.component';
 defineCustomElements();
 registerLocaleData(localeEn, 'en-EN');
 
@@ -61,7 +62,9 @@ registerLocaleData(localeEn, 'en-EN');
         SubMenuComponent,
         MenuItemComponent,
         ControlSidebarComponent,
-        SidebarSearchComponent
+        SidebarSearchComponent,
+        ProductosComponent,
+        DetailProductComponent
     ],
     imports: [
         BrowserModule,

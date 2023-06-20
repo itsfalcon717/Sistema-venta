@@ -1,0 +1,107 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Sub Menu</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Blank Page</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <!-- Default box -->
+    <div class="container-fluid">
+    <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Productos</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <table id="example2" class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                            <th>Fecha Registro</th>
+                            <th>Puerto</th>
+                            <th style="text-align: center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of lista; let i = index">
+                            <td>{{ i + 1 }}</td>
+                            <td>{{ item.nombre }}</td>
+                            <td>{{ item.precio }}</td>
+                            <td>{{ item.createAt | date: 'dd/MM/yyyy' }}</td>
+                            <td>{{ item.port }}</td>
+                            <td class="text-center py-0 align-middle">
+                                <div class="btn-group btn-group-sm">
+                                    <!-- <td style="text-align: center;"> -->
+                                    <button
+                                        class="btn btn-info"
+                                        style="margin-right: 5px"
+                                        (click)="clikInfo(item)"
+                                        data-toggle="modal"
+                                        data-target="#modalDefaul"
+                                    >
+                                        <i class="fa fa-eye"></i>
+                                    </button>
+                                    <button class="btn btn-danger">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                    <!-- </td> -->
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+    </div>
+    <!-- /.card -->
+</section>
+<!-- /.content -->
+<!-- Main content -->
+<div class="modal fade" id="modalDefaul">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Default Modal</h4>
+                <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                >
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>One fine body…</p>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button
+                    type="button"
+                    class="btn btn-default"
+                    data-dismiss="modal"
+                >
+                    Close
+                </button>
+                <button type="button" class="btn btn-primary">
+                    Save changes
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

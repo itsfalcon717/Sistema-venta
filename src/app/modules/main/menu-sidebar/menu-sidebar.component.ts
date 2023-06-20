@@ -49,7 +49,7 @@ export const MENU = [
             {
                 name: 'Products',
                 iconClasses: 'far fa-address-book',
-                path: ['/home/sub-menu-1']
+                path: ['/home/products']
             },
             {
                 name: 'Blank',
