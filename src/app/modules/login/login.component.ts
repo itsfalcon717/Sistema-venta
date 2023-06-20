@@ -18,8 +18,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     @HostBinding('class') class = 'login-box';
     public loginForm: UntypedFormGroup;
     public isAuthLoading = false;
-    public isGoogleLoading = false;
-    public isFacebookLoading = false;
+    // public isGoogleLoading = false;
+    // public isFacebookLoading = false;
 
     constructor(
         private renderer: Renderer2,
@@ -34,31 +34,34 @@ export class LoginComponent implements OnInit, OnDestroy {
         );
         this.loginForm = new UntypedFormGroup({
             email: new UntypedFormControl(null, Validators.required),
-            password: new UntypedFormControl(null, Validators.required)
+            password: new UntypedFormControl(null, Validators.required),
+            grant_type: new UntypedFormControl('password')
         });
     }
 
     async loginByAuth() {
         if (this.loginForm.valid) {
             this.isAuthLoading = true;
-            await this.appService.loginByAuth(this.loginForm.value);
+            // await this.appService.loginByAuth(this.loginForm.value);
+            // const user = { username: this.name, password: this.password,grant_type:'password'};
+            await this.appService.login(this.loginForm.value).subscribe((data:any) => {});
             this.isAuthLoading = false;
         } else {
             this.toastr.error('Form is not valid!');
         }
     }
 
-    async loginByGoogle() {
-        this.isGoogleLoading = true;
-        await this.appService.loginByGoogle();
-        this.isGoogleLoading = false;
-    }
+    // async loginByGoogle() {
+    //     this.isGoogleLoading = true;
+    //     await this.appService.loginByGoogle();
+    //     this.isGoogleLoading = false;
+    // }
 
-    async loginByFacebook() {
-        this.isFacebookLoading = true;
-        await this.appService.loginByFacebook();
-        this.isFacebookLoading = false;
-    }
+    // async loginByFacebook() {
+    //     this.isFacebookLoading = true;
+    //     await this.appService.loginByFacebook();
+    //     this.isFacebookLoading = false;
+    // }
 
     ngOnDestroy() {
         this.renderer.removeClass(

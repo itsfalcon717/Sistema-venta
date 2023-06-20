@@ -9,7 +9,7 @@
             <div class="input-group mb-3">
                 <input
                     formControlName="email"
-                    type="email"
+                    type="text"
                     class="form-control"
                     placeholder="Email"
                 />
@@ -33,19 +33,18 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-7">
+                <!-- <div class="col-7">
                     <div class="icheck-primary">
                         <input type="checkbox" id="remember" />
                         <label for="remember"> Remember Me </label>
                     </div>
-                </div>
+                </div> -->
                 <!-- /.col -->
-                <div class="col-5">
+                <div class="col-12">
                     <pf-button
                         [type]="'submit'"
                         [block]="true"
                         [loading]="isAuthLoading"
-                        [disabled]="isFacebookLoading || isGoogleLoading"
                     >
                         Sign In
                     </pf-button>
@@ -54,7 +53,7 @@
             </div>
         </form>
 
-        <div class="social-auth-links text-center mb-3">
+        <!-- <div class="social-auth-links text-center mb-3">
             <pf-button
                 class="mb-2"
                 [block]="true"
@@ -84,7 +83,7 @@
             <a [routerLink]="['/register']" class="text-center">
                 Register a new membership
             </a>
-        </p>
+        </p> -->
     </div>
     <!-- /.login-card-body -->
 </div>

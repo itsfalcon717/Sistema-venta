@@ -2,22 +2,44 @@ import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {Gatekeeper} from 'gatekeeper-client-sdk';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { environment } from 'environments/environment';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AppService {
     public user: any = null;
+    url: string = environment.API_REST_URL;
+    constructor(private router: Router, private toastr: ToastrService,private readonly _httpClient: HttpClient) {}
 
-    constructor(private router: Router, private toastr: ToastrService) {}
-
-    async loginByAuth({email, password}) {
+    login(user: any): Observable<any[]> {
+        let params = new HttpParams().set('username', user.email ).set('password', user.password ) .set('grant_type', user.grant_type  );
+        let headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded','Authorization': 'Basic ' + btoa('frontendapp:12345')});
+       
         try {
-            const token = await Gatekeeper.loginByAuth(email, password);
-            localStorage.setItem('token', token);
-            await this.getProfile();
-            this.router.navigate(['/']);
-            this.toastr.success('Login success');
+            return this._httpClient.post<any>(this.url + '/security/oauth/token', params.toString(), { headers }).pipe(
+              map((resp: any) => {
+                const usuario: any[] = [];
+                if (resp.status === 200) {
+                  sessionStorage.setItem('token',resp.access_token);
+                  sessionStorage.setItem('nombre',resp.nombre);
+                //   sessionStorage.setItem('token',resp.access_token);
+                  this.router.navigate(['/home']);
+                  this.toastr.success('Login success');
+                } 
+                return resp;
+              })
+            );
+
+            // const token = await Gatekeeper.loginByAuth(email, password);
+            // const token:any = this._httpClient.post<any>(this.url + '/security/oauth/token', params.toString(), { headers })
+            // localStorage.setItem('token', token.access_token);
+            // await this.getProfile();
+            // this.router.navigate(['/']);
+            // this.toastr.success('Login success');
         } catch (error) {
             this.toastr.error(error.message);
         }

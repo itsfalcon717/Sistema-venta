@@ -27,7 +27,7 @@ export class MenuSidebarComponent implements OnInit {
         this.ui.subscribe((state: UiState) => {
             this.classes = `${BASE_CLASSES} ${state.sidebarSkin}`;
         });
-        this.user = this.appService.user;
+    this.user = sessionStorage.getItem('nombre');
     }
 }
 
@@ -35,26 +35,26 @@ export const MENU = [
     {
         name: 'Dashboard',
         iconClasses: 'fas fa-tachometer-alt',
-        path: ['/']
+        path: ['/home']
     },
     {
-        name: 'Blank',
+        name: 'Users',
         iconClasses: 'fas fa-file',
-        path: ['/blank']
+        path: ['/home/blank']
     },
     {
-        name: 'Main Menu',
+        name: 'Config',
         iconClasses: 'fas fa-folder',        
         children: [
             {
-                name: 'Sub Menu',
+                name: 'Products',
                 iconClasses: 'far fa-address-book',
-                path: ['/sub-menu-1']
+                path: ['/home/sub-menu-1']
             },
             {
                 name: 'Blank',
                 iconClasses: 'fas fa-file',
-                path: ['/sub-menu-2']
+                path: ['/home/sub-menu-2']
             }
         ]
     }

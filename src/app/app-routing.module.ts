@@ -16,9 +16,14 @@ import {SubMenuComponent} from '@pages/main-menu/sub-menu/sub-menu.component';
 const routes: Routes = [
     {
         path: '',
+        component: LoginComponent,
+        canActivate: [NonAuthGuard]
+    },
+    {
+        path: 'home',
         component: MainComponent,
-        canActivate: [AuthGuard],
-        canActivateChild: [AuthGuard],
+        // canActivate: [AuthGuard],
+        // canActivateChild: [AuthGuard],
         children: [
             {
                 path: 'profile',
@@ -42,11 +47,7 @@ const routes: Routes = [
             }
         ]
     },
-    {
-        path: 'login',
-        component: LoginComponent,
-        canActivate: [NonAuthGuard]
-    },
+  
     {
         path: 'register',
         component: RegisterComponent,
