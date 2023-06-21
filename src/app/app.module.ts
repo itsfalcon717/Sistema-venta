@@ -38,6 +38,7 @@ import {SidebarSearchComponent} from './components/sidebar-search/sidebar-search
 import { ProductosComponent } from './pages/main-menu/productos/productos.component';
 import { DetailProductComponent } from './pages/main-menu/productos/detail-product/detail-product.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 defineCustomElements();
 registerLocaleData(localeEn, 'en-EN');
 
@@ -65,7 +66,8 @@ registerLocaleData(localeEn, 'en-EN');
         ControlSidebarComponent,
         SidebarSearchComponent,
         ProductosComponent,
-        DetailProductComponent
+        DetailProductComponent,
+        UsuariosComponent
     ],
     imports: [
         BrowserModule,

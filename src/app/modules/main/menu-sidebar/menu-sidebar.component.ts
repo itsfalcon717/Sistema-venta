@@ -40,7 +40,7 @@ export const MENU = [
     {
         name: 'Users',
         iconClasses: 'fas fa-file',
-        path: ['/home/blank']
+        path: ['/home/user']
     },
     {
         name: 'Config',
