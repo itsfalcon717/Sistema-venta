@@ -39,6 +39,7 @@ import { ProductosComponent } from './pages/main-menu/productos/productos.compon
 import { DetailProductComponent } from './pages/main-menu/productos/detail-product/detail-product.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
+import { ModalEliminarComponent } from './pages/usuarios/modal-eliminar/modal-eliminar.component';
 defineCustomElements();
 registerLocaleData(localeEn, 'en-EN');
 
@@ -67,7 +68,8 @@ registerLocaleData(localeEn, 'en-EN');
         SidebarSearchComponent,
         ProductosComponent,
         DetailProductComponent,
-        UsuariosComponent
+        UsuariosComponent,
+        ModalEliminarComponent
     ],
     imports: [
         BrowserModule,

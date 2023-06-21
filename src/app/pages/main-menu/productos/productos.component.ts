@@ -31,6 +31,7 @@ export class ProductosComponent implements OnInit {
       this.listaID=res;
       const modalRef = this.serviceModal.open(DetailProductComponent);
       modalRef.componentInstance.user = form;
+      this.serviceModal.dismissAll
         // this.serviceModal.open(DetailProductComponent).result.then( r => {
         //   console.log("Tu respuesta ha sido: " + r);
         // }, error => { 
