@@ -14,4 +14,8 @@ export class ProductsService {
     const headers = new HttpHeaders({'Authorization': 'Bearer ' + this.token });
     return this._httpClient.get<any>(this.url+'/productos/listar',{ headers });
   }
+  productDetail(id:number){
+    const headers = new HttpHeaders({'Authorization': 'Bearer ' + this.token });
+    return this._httpClient.get<any>(this.url+'/productos/ver/'+ id,{ headers });
+  }
 }

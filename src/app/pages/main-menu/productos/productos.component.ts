@@ -1,6 +1,8 @@
 import { IProduct } from '@/interfaces/iproduct';
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProductsService } from '@services/products.service';
+import { DetailProductComponent } from './detail-product/detail-product.component';
 
 @Component({
   selector: 'app-productos',
@@ -9,7 +11,8 @@ import { ProductsService } from '@services/products.service';
 })
 export class ProductosComponent implements OnInit {
   lista:IProduct[]=[];
-  constructor(private productService: ProductsService) { }
+  listaID:IProduct[]=[];
+  constructor(private productService: ProductsService,private serviceModal:NgbModal) { }
   
   ngOnInit() {
     this.product();
@@ -23,6 +26,19 @@ export class ProductosComponent implements OnInit {
   }
 
   clikInfo(form:IProduct){
+    let id:number = Number(form.id);
+      this.productService.productDetail(id).subscribe((res:any) => {
+      this.listaID=res;
+      const modalRef = this.serviceModal.open(DetailProductComponent);
+      modalRef.componentInstance.user = form;
+        // this.serviceModal.open(DetailProductComponent).result.then( r => {
+        //   console.log("Tu respuesta ha sido: " + r);
+        // }, error => { 
+        //   console.log(error);
+        // });
+
+     });
+ 
   
   }
 }

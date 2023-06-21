@@ -36,7 +36,8 @@ import {ProfabricComponentsModule} from '@profabric/angular-components';
 import {defineCustomElements} from '@profabric/web-components/loader';
 import {SidebarSearchComponent} from './components/sidebar-search/sidebar-search.component';
 import { ProductosComponent } from './pages/main-menu/productos/productos.component';
-import { DetailProductComponent } from './pages/main-menu/sub-menu/productos/productos/detail-product/detail-product.component';
+import { DetailProductComponent } from './pages/main-menu/productos/detail-product/detail-product.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 defineCustomElements();
 registerLocaleData(localeEn, 'en-EN');
 
@@ -73,6 +74,7 @@ registerLocaleData(localeEn, 'en-EN');
         AppRoutingModule,
         ReactiveFormsModule,
         BrowserAnimationsModule,
+        NgbModule,
         ToastrModule.forRoot({
             timeOut: 3000,
             positionClass: 'toast-top-right',
