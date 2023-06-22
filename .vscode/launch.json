@@ -8,7 +8,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "Open login.component.html",
-            "url": "http://localhost:4400",
+            "url": "http://localhost:4200",
              "webRoot": "${workspaceFolder}"
         }
     ]

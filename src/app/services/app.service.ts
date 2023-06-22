@@ -24,8 +24,10 @@ export class AppService {
               map((resp: any) => {
                 const usuario: any[] = [];
                 if (resp.status === 200) {
+                 this.perfiles(resp.access_token);
                   sessionStorage.setItem('token',resp.access_token);
                   sessionStorage.setItem('nombre',resp.nombre);
+                 
                 //   sessionStorage.setItem('token',resp.access_token);
                   this.router.navigate(['/home']);
                   this.toastr.success('Login success');
@@ -120,4 +122,29 @@ export class AppService {
         this.user = null;
         this.router.navigate(['/login']);
     }
+
+    public get currentToken(): any {
+        return sessionStorage.getItem('token');
+      }
+
+    parseJwt(data) {
+    if (data != undefined && data != null && data != '') {
+    var base64Url = data.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+    return JSON.parse(jsonPayload);
+  }
+  };
+
+  perfiles(res){
+    if (res!= undefined && res != null && res != '') {
+    let mensaje = this.parseJwt(res);
+    let rol = this.parseJwt(res).authorities.toString();
+    sessionStorage.setItem('rol', rol);
+      return mensaje;
+    }
+  }
+
 }
