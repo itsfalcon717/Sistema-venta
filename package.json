@@ -35,6 +35,7 @@
     "@ng-bootstrap/ng-bootstrap": "^5.0.0",
     "@ngrx/store": "14.3.0",
     "@profabric/angular-components": "0.1.2",
+    "bcryptjs": "^2.4.3",
     "bootstrap": "4.6.1",
     "core-js": "3.25.0",
     "crypto-js": "^4.1.1",

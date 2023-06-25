@@ -101,37 +101,43 @@
                                 <div class="col-md-6">
                                     <label for="exampleInputEmail1">Nombre usuario</label>
                                     <input type="email" class="form-control" id="exampleInputEmail1"
-                                        placeholder="Nombre usuario" formControlName="username">
+                                        placeholder="Nombre usuario" formControlName="username" [ngClass]="{'is-invalid':invalidField('username')}">
+                                        <div class="invalid-feedback">Obligatorio</div>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="exampleInputEmail1">Password</label>
                                     <input type="email" class="form-control" id="exampleInputEmail1"
-                                    placeholder="Password" formControlName="password">
+                                    placeholder="Password" formControlName="password" [ngClass]="{'is-invalid':invalidField('password')}">
+                                    <div class="invalid-feedback">Obligatorio</div>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="exampleInputEmail1">Nombre</label>
                                     <input type="email" class="form-control" id="exampleInputEmail1"
-                                        placeholder="Nombre" formControlName="nombres">
+                                        placeholder="Nombre" formControlName="nombres" [ngClass]="{'is-invalid':invalidField('nombres')}">
+                                        <div class="invalid-feedback">Obligatorio</div>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="exampleInputEmail1">Apellido</label>
                                     <input type="email" class="form-control" id="exampleInputEmail1"
-                                    placeholder="Apellido" formControlName="apellidos">
+                                    placeholder="Apellido" formControlName="apellidos" [ngClass]="{'is-invalid':invalidField('apellidos')}">
+                                    <div class="invalid-feedback">Obligatorio</div>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="exampleInputEmail1">Correo</label>
                                     <input type="email" class="form-control" id="exampleInputEmail1"
-                                        placeholder="Correo" formControlName="email">
+                                        placeholder="Correo" formControlName="email" [ngClass]="{'is-invalid':invalidField('email')}">
+                                        <div class="invalid-feedback">Obligatorio</div>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="exampleInputEmail1">Roles</label>
-                                      <select class="form-control" id="selectOptions" formControlName="roles" >
+                                      <select class="form-control" id="selectOptions" formControlName="roles" [ngClass]="{'is-invalid':invalidField('roles')}" >
                                         <option selected value="0">Seleccione</option>
                                         <option *ngFor="let option of rol" [value]="option.id">{{ option.nombre }}</option>
                                     </select>
+                                    <div class="invalid-feedback">Obligatorio</div>
                                 </div>
                                 <div class="col-md-6" style="padding-top: 20px;padding-left: 30px;" >
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1" formControlName="enabled">
+                                    <input type="checkbox" class="form-check-input" id="exampleCheck1" formControlName="enabled" >
                                     <label class="form-check-label" for="exampleCheck1">Activo</label>
                                 </div>
                                 
