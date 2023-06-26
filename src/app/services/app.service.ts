@@ -6,6 +6,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from 'environments/environment';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { ILogin } from '@/interfaces/ilogin';
 
 @Injectable({
     providedIn: 'root'
@@ -46,6 +47,11 @@ export class AppService {
             this.toastr.error(error.message);
         }
     }
+
+    // login FIrebase
+    // login(user:ILogin){
+    //     return this._httpClient.post<any>(this.url.);
+    // }
 
     async registerByAuth({email, password}) {
         try {

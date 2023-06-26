@@ -5,6 +5,9 @@
 export const environment = {
     production: false,
     API_REST_URL: 'http://localhost:8090/api',
+   // data base firebase
+   //API_REST_URL:  'https://sistema-venta-68b5a-default-rtdb.firebaseio.com',
+   //urlLogin:'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCNGudQzV238ltFMNkzQl0dg6vQF1fQ3KA'
 };
 
 /*
