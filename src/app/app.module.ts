@@ -1,7 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
-
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {AppRoutingModule} from '@/app-routing.module';
 import {AppComponent} from './app.component';
 import {MainComponent} from '@modules/main/main.component';
@@ -10,7 +8,7 @@ import {HeaderComponent} from '@modules/main/header/header.component';
 import {FooterComponent} from '@modules/main/footer/footer.component';
 import {MenuSidebarComponent} from '@modules/main/menu-sidebar/menu-sidebar.component';
 import {BlankComponent} from '@pages/blank/blank.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ProfileComponent} from '@pages/profile/profile.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RegisterComponent} from '@modules/register/register.component';
@@ -18,7 +16,7 @@ import {DashboardComponent} from '@pages/dashboard/dashboard.component';
 import {ToastrModule} from 'ngx-toastr';
 import {MessagesComponent} from '@modules/main/header/messages/messages.component';
 import {NotificationsComponent} from '@modules/main/header/notifications/notifications.component';
-
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {registerLocaleData} from '@angular/common';
 import localeEn from '@angular/common/locales/en';
 import {UserComponent} from '@modules/main/header/user/user.component';
@@ -40,6 +38,7 @@ import { DetailProductComponent } from './pages/main-menu/productos/detail-produ
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { ModalEliminarComponent } from './pages/usuarios/modal-eliminar/modal-eliminar.component';
+import { IntInterceptor } from './interceptor/int.interceptor';
 defineCustomElements();
 registerLocaleData(localeEn, 'en-EN');
 
@@ -73,11 +72,12 @@ registerLocaleData(localeEn, 'en-EN');
     ],
     imports: [
         BrowserModule,
-        StoreModule.forRoot({auth: authReducer, ui: uiReducer}),
-        HttpClientModule,
-        AppRoutingModule,
-        ReactiveFormsModule,
         BrowserAnimationsModule,
+        AppRoutingModule,
+       StoreModule.forRoot({auth: authReducer, ui: uiReducer}),
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
         NgbModule,
         ToastrModule.forRoot({
             timeOut: 3000,
@@ -86,7 +86,14 @@ registerLocaleData(localeEn, 'en-EN');
         }),
         ProfabricComponentsModule
     ],
-    providers: [],
-    bootstrap: [AppComponent]
+    providers: [
+        {
+            provide:HTTP_INTERCEPTORS,
+            useClass:IntInterceptor,
+            multi:true
+        }
+    ],
+    bootstrap: [AppComponent],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

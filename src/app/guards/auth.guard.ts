@@ -9,7 +9,6 @@ import {
 } from '@angular/router';
 import {Observable} from 'rxjs';
 import {AppService} from '@services/app.service';
-
 @Injectable({
     providedIn: 'root'
 })
@@ -24,7 +23,15 @@ export class AuthGuard implements CanActivate, CanActivateChild {
         | Promise<boolean | UrlTree>
         | boolean
         | UrlTree {
-        return this.getProfile();
+            console.log('route', next)
+        return  new Promise(resolve =>{
+            if(localStorage.getItem('token') != null){
+                resolve(true);
+            }else{
+                this.router.navigateByUrl("/login");
+                resolve(false);
+            }
+        });
     }
 
     canActivateChild(
@@ -38,16 +45,17 @@ export class AuthGuard implements CanActivate, CanActivateChild {
         return this.canActivate(next, state);
     }
 
-    async getProfile() {
-        if (this.appService.user) {
-            return true;
-        }
+    
+    // async getProfile() {
+    //     if (this.appService.user) {
+    //         return true;
+    //     }
 
-        try {
-            await this.appService.getProfile();
-            return true;
-        } catch (error) {
-            return false;
-        }
-    }
+    //     try {
+    //         await this.appService.getProfile();
+    //         return true;
+    //     } catch (error) {
+    //         return false;
+    //     }
+    // }
 }

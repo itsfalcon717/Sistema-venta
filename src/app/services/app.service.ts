@@ -16,26 +16,12 @@ export class AppService {
     url: string = environment.API_REST_URL;
     constructor(private router: Router, private toastr: ToastrService,private readonly _httpClient: HttpClient) {}
 
-    login(user: any): Observable<any[]> {
+     login(user: any) : Observable<any> {
         let params = new HttpParams().set('username', user.email ).set('password', user.password ) .set('grant_type', user.grant_type  );
         let headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded','Authorization': 'Basic ' + btoa('frontendapp:12345')});
        
-        try {
-            return this._httpClient.post<any>(this.url + '/security/oauth/token', params.toString(), { headers }).pipe(
-              map((resp: any) => {
-                const usuario: any[] = [];
-                if (resp.status === 200) {
-                 this.perfiles(resp.access_token);
-                  sessionStorage.setItem('token',resp.access_token);
-                  sessionStorage.setItem('nombre',resp.nombre);
-                 
-                //   sessionStorage.setItem('token',resp.access_token);
-                  this.router.navigate(['/home']);
-                  this.toastr.success('Login success');
-                } 
-                return resp;
-              })
-            );
+        // try {
+            return this._httpClient.post(this.url + '/security/oauth/token', params.toString(), { headers });
 
             // const token = await Gatekeeper.loginByAuth(email, password);
             // const token:any = this._httpClient.post<any>(this.url + '/security/oauth/token', params.toString(), { headers })
@@ -43,9 +29,9 @@ export class AppService {
             // await this.getProfile();
             // this.router.navigate(['/']);
             // this.toastr.success('Login success');
-        } catch (error) {
-            this.toastr.error(error.message);
-        }
+        // } catch (error) {
+        //     this.toastr.error(error.message);
+        // }
     }
 
     // login FIrebase
@@ -130,7 +116,7 @@ export class AppService {
     }
 
     public get currentToken(): any {
-        return sessionStorage.getItem('token');
+        return localStorage.getItem('token');
       }
 
     parseJwt(data) {
@@ -148,7 +134,7 @@ export class AppService {
     if (res!= undefined && res != null && res != '') {
     let mensaje = this.parseJwt(res);
     let rol = this.parseJwt(res).authorities.toString();
-    sessionStorage.setItem('rol', rol);
+    localStorage.setItem('rol', rol);
       return mensaje;
     }
   }

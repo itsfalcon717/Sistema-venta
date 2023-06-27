@@ -13,12 +13,12 @@ export class UserComponent implements OnInit {
     constructor(private appService: AppService) {}
 
     ngOnInit(): void {
-        this.user = sessionStorage.getItem('nombre');
+        this.user = localStorage.getItem('nombre');
     }
 
     logout() {
         this.appService.logout();
-        sessionStorage.clear();
+        localStorage.clear();
     }
 
     formatDate(date) {

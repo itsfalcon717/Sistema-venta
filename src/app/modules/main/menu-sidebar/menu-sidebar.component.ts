@@ -35,12 +35,12 @@ export const MENU = [
     {
         name: 'Dashboard',
         iconClasses: 'fas fa-tachometer-alt',
-        path: ['/home']
+        path: ['/']
     },
     {
         name: 'Users',
         iconClasses: 'fas fa-file',
-        path: ['/home/user']
+        path: ['/user']
     },
     {
         name: 'Config',
@@ -49,12 +49,12 @@ export const MENU = [
             {
                 name: 'Products',
                 iconClasses: 'far fa-address-book',
-                path: ['/home/products']
+                path: ['/products']
             },
             {
                 name: 'Blank',
                 iconClasses: 'fas fa-file',
-                path: ['/home/sub-menu-2']
+                path: ['/sub-menu-2']
             }
         ]
     }

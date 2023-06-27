@@ -17,15 +17,15 @@ import { UsuariosComponent } from '@pages/usuarios/usuarios.component';
 
 const routes: Routes = [
     {
-        path: '',
+        path: 'login',
         component: LoginComponent,
         canActivate: [NonAuthGuard]
     },
     {
-        path: 'home',
+        path: '',
         component: MainComponent,
-        // canActivate: [AuthGuard],
-        // canActivateChild: [AuthGuard],
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
         children: [
             {
                 path: 'profile',
@@ -54,21 +54,21 @@ const routes: Routes = [
         ]
     },
   
-    {
-        path: 'register',
-        component: RegisterComponent,
-        canActivate: [NonAuthGuard]
-    },
-    {
-        path: 'forgot-password',
-        component: ForgotPasswordComponent,
-        canActivate: [NonAuthGuard]
-    },
-    {
-        path: 'recover-password',
-        component: RecoverPasswordComponent,
-        canActivate: [NonAuthGuard]
-    },
+    // {
+    //     path: 'register',
+    //     component: RegisterComponent,
+    //     canActivate: [NonAuthGuard]
+    // },
+    // {
+    //     path: 'forgot-password',
+    //     component: ForgotPasswordComponent,
+    //     canActivate: [NonAuthGuard]
+    // },
+    // {
+    //     path: 'recover-password',
+    //     component: RecoverPasswordComponent,
+    //     canActivate: [NonAuthGuard]
+    // },
     {path: '**', redirectTo: ''}
 ];
 

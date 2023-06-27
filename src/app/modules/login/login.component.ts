@@ -8,13 +8,14 @@ import {
 import {UntypedFormGroup, UntypedFormControl, Validators} from '@angular/forms';
 import {ToastrService} from 'ngx-toastr';
 import {AppService} from '@services/app.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnInit {
     @HostBinding('class') class = 'login-box';
     public loginForm: UntypedFormGroup;
     public isAuthLoading = false;
@@ -24,7 +25,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     constructor(
         private renderer: Renderer2,
         private toastr: ToastrService,
-        private appService: AppService
+        private appService: AppService,
+        private router: Router
     ) {}
 
     ngOnInit() {
@@ -39,13 +41,26 @@ export class LoginComponent implements OnInit, OnDestroy {
         });
     }
 
-    async loginByAuth() {
+     loginByAuth() {
         if (this.loginForm.valid) {
             this.isAuthLoading = true;
             // await this.appService.loginByAuth(this.loginForm.value);
             // const user = { username: this.name, password: this.password,grant_type:'password'};
-            await this.appService.login(this.loginForm.value).subscribe((data:any) => {});
-            this.isAuthLoading = false;
+              this.appService.login(this.loginForm.value).subscribe(
+                (resp:any) => {
+                localStorage.setItem('token',resp.access_token);
+                localStorage.setItem('nombre',resp.nombre);
+              
+                this.isAuthLoading = false;
+                this.router.navigate(['/']);
+                this.toastr.success('Acceso correcto');
+            },
+            (err)=>{
+                this.toastr.warning('error en acceso');
+            }
+            
+            );
+          
         } else {
             this.toastr.error('Form is not valid!');
         }
@@ -63,10 +78,10 @@ export class LoginComponent implements OnInit, OnDestroy {
     //     this.isFacebookLoading = false;
     // }
 
-    ngOnDestroy() {
-        this.renderer.removeClass(
-            document.querySelector('app-root'),
-            'login-page'
-        );
-    }
+    // ngOnDestroy() {
+    //     this.renderer.removeClass(
+    //         document.querySelector('app-root'),
+    //         'login-page'
+    //     );
+    // }
 }
