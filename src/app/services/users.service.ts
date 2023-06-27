@@ -7,33 +7,22 @@ import { environment } from 'environments/environment';
 })
 export class UsersService {
   url: string = environment.API_REST_URL;
-  // token = sessionStorage.getItem('token');
   constructor(private readonly _httpClient: HttpClient) { }
 
   getUsers(){
-    let  token = localStorage.getItem('token');
-    const headers = new HttpHeaders({'Authorization': 'Bearer ' + token });
-    return this._httpClient.get<any>(this.url+'/usuarios/usuarios',{ headers });
+    return this._httpClient.get<any>(this.url+'/usuarios/usuarios');
   }
 
   getUserId(id:number){
-   let  token = localStorage.getItem('token');
-    const headers = new HttpHeaders({'Authorization': 'Bearer ' + token });
-    return this._httpClient.get<any>(this.url+'/usuarios/usuarios/' + id,{ headers });
+    return this._httpClient.get<any>(this.url+'/usuarios/usuarios/' + id);
   }
   deleteUser(id:number){
-    let  token = localStorage.getItem('token');
-    const headers = new HttpHeaders({'Authorization': 'Bearer ' + token });
-    return this._httpClient.delete<any>(this.url+'/usuarios/usuarios/' + id,{ headers });
+    return this._httpClient.delete<any>(this.url+'/usuarios/usuarios/' + id);
   }
   createUser(user:object){
-    let  token = localStorage.getItem('token');
-    const headers = new HttpHeaders({'Authorization': 'Bearer ' + token });
-    return this._httpClient.post<any>(this.url+'/usuarios/usuarios',user,{ headers });
+    return this._httpClient.post<any>(this.url+'/usuarios/usuarios',user);
   }
   UpdateUser(user:object,id:Number){
-    let  token = localStorage.getItem('token');
-    const headers = new HttpHeaders({'Authorization': 'Bearer ' + token });
-    return this._httpClient.put<any>(this.url+'/usuarios/usuarios/' + id,user,{ headers });
+    return this._httpClient.put<any>(this.url+'/usuarios/usuarios/' + id,user);
   }
 }
