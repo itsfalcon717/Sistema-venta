@@ -38,7 +38,6 @@ import { DetailProductComponent } from './pages/main-menu/productos/detail-produ
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { ModalEliminarComponent } from './pages/usuarios/modal-eliminar/modal-eliminar.component';
-import { IntInterceptor } from './interceptor/int.interceptor';
 defineCustomElements();
 registerLocaleData(localeEn, 'en-EN');
 
@@ -87,11 +86,7 @@ registerLocaleData(localeEn, 'en-EN');
         ProfabricComponentsModule
     ],
     providers: [
-        {
-            provide:HTTP_INTERCEPTORS,
-            useClass:IntInterceptor,
-            multi:true
-        }
+    
     ],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
